@@ -7,105 +7,70 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+import {SafeAreaView, StyleSheet} from 'react-native';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import ComposeProviders from './src/context';
+import Initializing from './src/views/Initializing';
+import LoginScreen from './src/views/login';
+import {RouteKeys} from './src/common/Constants';
+import Settings from './src/views/settings';
+import Drawer from './src/navigation/drawer';
+import ChangePassword from './src/views/changePassword';
+import ForgotPassword from './src/views/forgotPassword';
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const Stack = createStackNavigator();
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    <SafeAreaView style={styles.background}>
+      <ComposeProviders>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: true,
+            }}>
+            <Stack.Screen
+              name={RouteKeys.INITIAL}
+              component={Initializing}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={RouteKeys.LOGIN}
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={RouteKeys.SETTINGS}
+              component={Settings}
+              options={{title: 'Settings'}}
+            />
+            <Stack.Screen
+              name={RouteKeys.DRAWER}
+              component={Drawer}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name={RouteKeys.CHANGE_PASSWORD}
+              component={ChangePassword}
+              options={{title: 'Change Password'}}
+            />
+            <Stack.Screen
+              name={RouteKeys.FORGOT_PASSWORD}
+              component={ForgotPassword}
+              options={{title: 'Forgot Password'}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ComposeProviders>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  background: {
+    flex: 1,
   },
 });
 

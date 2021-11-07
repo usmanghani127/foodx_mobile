@@ -1,0 +1,28 @@
+import {URL} from './Constants';
+
+export const LOGIN = {
+  TRIGGER: 'LOGIN',
+  SUCCESS: 'LOGIN_SUCCESS',
+  FAILURE: 'LOGIN_FAILURE',
+  URL: `${URL}/auth`,
+};
+
+export const LOGOUT = {
+  TRIGGER: 'LOGOUT',
+  SUCCESS: 'LOGOUT_SUCCESS',
+  FAILURE: 'LOGOUT_FAILURE',
+};
+
+export const GET_FEATURED_FOOD = {
+  TRIGGER: 'GET_FEATURED_FOOD',
+  SUCCESS: 'GET_FEATURED_FOOD_SUCCESS',
+  FAILURE: 'GET_FEATURED_FOOD_FAILURE',
+  URL: `${URL}/food/featured`,
+};
+
+export const PLACE_ORDER = {
+  TRIGGER: 'PLACE_ORDER',
+  SUCCESS: 'PLACE_ORDER_SUCCESS',
+  FAILURE: 'PLACE_ORDER_FAILURE',
+  URL: `${URL}/order`,
+};

@@ -1,0 +1,17 @@
+export default {
+  primaryLight: '#00ccbc90',
+  primaryDark: '#00ccbc',
+  primaryGradient: ['#00ccbc90', '#00ccbc'],
+  text: '#6d6d6d',
+  description: '#989898',
+  faint: '#d7d7d7',
+  heading: '#1a1a1a',
+  background: '#f6f6f6',
+  star: 'rgb(243, 169, 59)',
+  white: '#FFFFFF',
+  whiteFaded: 'rgba(255, 255, 255, 0.5)',
+  black: '#000000',
+  blackFaded: 'rgba(0,0,0,0.5)',
+  red: 'red',
+  transparent: 'transparent',
+};
